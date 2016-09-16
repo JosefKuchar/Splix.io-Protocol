@@ -500,6 +500,8 @@ function onMessage(a) {
   }
 }
 
+//a is packet name
+//b is packet data
 function wsSendMsg(a, b) {
   if (ws && ws.readyState == WebSocket.OPEN) {
     var c = [a];
