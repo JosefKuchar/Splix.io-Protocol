@@ -92,9 +92,24 @@ All messages are send as Uint8Array.
 
 ### Packet "1"
 
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1     | uint8     | Direction (0-3)
+| 2-3   | uint8     | X Coordinate
+| 4-5   | uint8     | Y Coordinate
+
 ### Packet "2"
 
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-?   | string    | Send as decimal(ascii) value
+
 ### Packet "3"
+
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1     | uint8     | Block color
+| 2     | uint8     | Block pattern
 
 ### Packet "4"
 
@@ -110,5 +125,7 @@ Sent only packet header.
 Ping server. Sent only packet header.
 
 ### Packet "8"
+
+Request for your trail (the path drawn when not in native territory). Sent only packet header.
 
 ## Connection
