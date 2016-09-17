@@ -1,5 +1,11 @@
 # Splix.io protocol
 
+All messages start with this header
+
+| Byte  | Data type | Description
+|:------|-----------|------------
+| 0     | uint8     | Packet name
+
 ## Servers
 Servers are located by json file http://splix.io/json/servers.json
 
@@ -27,51 +33,51 @@ Servers are located by json file http://splix.io/json/servers.json
 | 20          |           | PLAYER_HONK               | Sent when a player within view honks
 | 21          |           | PONG                      | Sent when a player ping the server
 
-### Packet 1
+### Packet "1"
 
-### Packet 2
+### Packet "2"
 
-### Packet 3
+### Packet "3"
 
-### Packet 4
+### Packet "4"
 
-### Packet 5
+### Packet "5"
 
-### Packet 6
+### Packet "6"
 
-### Packet 7
+### Packet "7"
 
-### Packet 8
+### Packet "8"
 
-### Packet 9
+### Packet "9"
 
-### Packet 10
+### Packet "10"
 
-### Packet 11
+### Packet "11"
 
-### Packet 12
+### Packet "12"
 
-### Packet 13
+### Packet "13"
 
-### Packet 14
+### Packet "14"
 
-### Packet 15
+### Packet "15"
 
-### Packet 16
+### Packet "16"
 
-### Packet 17
+### Packet "17"
 
-### Packet 18
+### Packet "18"
 
-### Packet 19
+### Packet "19"
 
-### Packet 20
+### Packet "20"
 
-### Packet 21
+### Packet "21"
 
 ## Client
 
-All messages are send as Uint8Array
+All messages are send as Uint8Array.
 
 | Packet name | Data type | Name in game     | Description
 |:-----------:|-----------|----------------- | ------------
@@ -84,18 +90,25 @@ All messages are send as Uint8Array
 | 7           |           | PING             | Ping server
 | 8           |           | REQUEST_MY_TRAIL | Request for your trail (the path drawn when not in native territory)
 
-### Packet 1
+### Packet "1"
 
-### Packet 2
+### Packet "2"
 
-### Packet 3
+### Packet "3"
 
-### Packet 4
+### Packet "4"
 
-### Packet 5
+Sent after username and skin packet are send to initiate player spawn.
+Sent only packet header.
 
-### Packet 6
+### Packet "5"
 
-### Packet 7
+### Packet "6"
 
-### Packet 8
+### Packet "7"
+
+Ping server. Sent only packet header.
+
+### Packet "8"
+
+## Connection
