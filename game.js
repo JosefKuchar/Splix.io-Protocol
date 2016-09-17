@@ -500,34 +500,51 @@ function onMessage(a) {
   }
 }
 
-function wsSendMsg(a, b) {
-  if (ws && ws.readyState == WebSocket.OPEN) {
-    var c = [a];
-    //If it is direction update
-    if (a == sendAction.UPDATE_DIR) {
-      // c is [1]
+function wsSendMsg(packetType, packetData) {
+  // Make sure the WebSocket is currently ready to send data: 
+    if (ws != null && ws.readyState == WebSocket.OPEN) {
+      // Generate a new array to push all of the packet data into; this array is later converted into a Uint8Array:
+        var packet = [packetType];
+        if (packetType == sendAction.UPDATE_DIR) {
+          // Add the direction code to the array:
+            packet.push(packetData.dir);
+          // Add the player's coordinates:
+            var dirCoordX = intToBytes(packetData.coord[0], 2);
+            var dirCoordY = intToBytes(packetData.coord[1], 2);
 
-      c.push(b.dir);
-      var d = intToBytes(b.coord[0], 2);
-      c.push(d[0]), c.push(d[1]);
-      var e = intToBytes(b.coord[1], 2);
-      c.push(e[0]), c.push(e[1])
+            packet.push(dirCoordX[0]), packet.push(dirCoordX[1]);
+            packet.push(dirCoordY[0]), packet.push(dirCoordY[1]);
+        }
+        if (packetType == sendAction.SET_USERNAME) {
+          // Convert the username to bytes and add it to the packet array:
+            var nameInBytes = toUTF8Array(packetData);
+            packet.push.apply(packet, nameInBytes);
+        }
+        if (packetType == sendAction.SKIN) {
+          // Add your skin choices to the packet:
+          // If the color integer is 0, you will get a random color
+          // If the pattern integer is 0, you wont have a pattern
+            packet.push(packetData.blockColor);
+            packet.push(packetData.pattern);
+        }
+        if (packetType == sendAction.REQUEST_CLOSE) {
+            for (var packetIndex = 0; packetIndex < packetData.length; packetIndex++) {
+                packet.push(packetData[packetIndex]);
+            }
+        }
+        if (packetType == sendAction.HONK) {
+          packet.push(packetData);
+        }
+        // Create a Uint8Array from the packet array to send to the server
+        var UintPacket = new Uint8Array(packet);
+        // attempt send
+        try {
+            return ws.send(UintPacket), true;
+        } catch (ERROR) {
+            console.log("Error sending packet:", packetType, packetData, packet, ERROR)
+        }
     }
-    if (a == sendAction.SET_USERNAME) {
-      var f = toUTF8Array(b);
-      c.push.apply(c, f)
-    }
-    if (a == sendAction.SKIN && (c.push(b.blockColor), c.push(b.pattern)), a == sendAction.REQUEST_CLOSE)
-      for (var g = 0; g < b.length; g++) c.push(b[g]);
-    a == sendAction.HONK && c.push(b);
-    var h = new Uint8Array(c);
-    try {
-      return ws.send(h), !0
-    } catch (d) {
-      console.log("error sending message", a, b, c, d)
-    }
-  }
-  return !1
+    return false;
 }
 
 function resetAll() {
@@ -2079,3 +2096,4 @@ var isConnectingWithTransition = !1,
   },
   swearArr = "penis;fuck;anal;anus;shit;asshole;bitch;butthole;slut;bitch;gay;nigger;xhamster;cock;cunt;dick;porn".split(";"),
   swearRepl = "balaboo";
+ 
