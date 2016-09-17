@@ -25,7 +25,7 @@ Servers are located by json file http://splix.io/json/servers.json
 | 18          |           | PLAYER_HIT_LINE           |
 | 19          |           | REFRESH_AFTER_DIE         |
 | 20          |           | PLAYER_HONK               | Sent when a player within view honks
-| 21          |           | PONG                      |
+| 21          |           | PONG                      | Sent when a player ping the server
 
 ### Packet 1
 
