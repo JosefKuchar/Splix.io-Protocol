@@ -79,16 +79,16 @@ Servers are located by json file http://splix.io/json/servers.json
 
 All messages are send as Uint8Array.
 
-| Packet name | Data type | Name in game     | Description
-|:-----------:|-----------|----------------- | ------------
-| 1           |           | UPDATE_DIR       | Update direction
-| 2           |           | SET_USERNAME     | Set username
-| 3           |           | SKIN             | Set skin
-| 4           |           | READY            | Sent after username and skin packet are send to initiate player spawn
-| 5           |           | REQUEST_CLOSE    |
-| 6           |           | HONK             | Send honk (honk is when you press space / hold down for a bigger honk size)
-| 7           |           | PING             | Ping server
-| 8           |           | REQUEST_MY_TRAIL | Request for your trail (the path drawn when not in native territory)
+| Packet name | Name in game     | Description
+|:-----------:|------------------| ------------
+| 1           | UPDATE_DIR       | Update direction
+| 2           | SET_USERNAME     | Set username
+| 3           | SKIN             | Set skin
+| 4           | READY            | Sent after username and skin packet are send to initiate player spawn
+| 5           | REQUEST_CLOSE    | Unused in game code
+| 6           | HONK             | Send honk (honk is when you press space / hold down for a bigger honk size)
+| 7           | PING             | Ping server
+| 8           | REQUEST_MY_TRAIL | Request for your trail (the path drawn when not in native territory)
 
 ### Packet "1"
 
@@ -123,6 +123,8 @@ Sent after username and skin packet are send to initiate player spawn.
 Sent only packet header.
 
 ### Packet "5"
+
+Unused in game code, you can ignore this packet.
 
 ### Packet "6"
 
