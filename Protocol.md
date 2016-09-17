@@ -92,6 +92,8 @@ All messages are send as Uint8Array.
 
 ### Packet "1"
 
+Update direction
+
 | Bytes | Data type | Description
 |:------|-----------|------------
 | 1     | uint8     | Direction (0-3)
@@ -100,11 +102,15 @@ All messages are send as Uint8Array.
 
 ### Packet "2"
 
+Set username
+
 | Bytes | Data type | Description
 |:------|-----------|------------
 | 1-?   | string    | Send as decimal(ascii) value
 
 ### Packet "3"
+
+Set skin
 
 | Bytes | Data type | Description
 |:------|-----------|------------
@@ -119,6 +125,12 @@ Sent only packet header.
 ### Packet "5"
 
 ### Packet "6"
+
+Send honk (honk is when you press space / hold down for a bigger honk size)
+
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1     | uint8     | 0-1000ms normalized to 0-255
 
 ### Packet "7"
 
