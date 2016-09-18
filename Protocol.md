@@ -47,6 +47,14 @@ Contains the position of any player within view
 
 ### Packet "3"
 
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-2   | uint8     |
+| 3-4   | uint8     |
+| 5-6   | uint8     |
+| 7-8   | uint8     |
+| 9     | uint8     | 
+
 ### Packet "4"
 
 ### Packet "5"
@@ -82,7 +90,7 @@ Contains your own score
 ### Packet "10"
 
 Contains your own rank
-	
+
 | Bytes | Data type | Description
 |:------|-----------|------------
 | 1-2   | uint8     | Your rank as an integer
@@ -131,7 +139,7 @@ Header only sometimes, but also can contain information on death:
 
 ### Packet "15"
 Contains skin of a specific player
-	
+
 | Bytes | Data type | Description
 |:------|-----------|----------------------------------------------------------------------------------------
 | 1-2   | uint8     | Integer of the player ID (ID is 0 = you)
