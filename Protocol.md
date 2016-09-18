@@ -37,6 +37,14 @@ Servers are located by json file http://splix.io/json/servers.json
 
 ### Packet "2"
 
+Contains the position of any player within view
+
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-2   | uint8     | The X position of the player to update
+| 3-4   | uint8     | The Y position of the player to update
+| 5-6   | uint8     | The ID of the player to update (ID is 0 = you)
+
 ### Packet "3"
 
 ### Packet "4"
@@ -47,33 +55,109 @@ Servers are located by json file http://splix.io/json/servers.json
 
 ### Packet "7"
 
+Remove a player from view
+
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-2   | uint8     | ID of player to remove (ID is 0 = you)
+
 ### Packet "8"
+
+Contains name of a specified player
+
+| Bytes            | Data type | Description
+|:-----------------|-----------|------------
+| 1-2              | uint8     | ID of player to set name (ID is 0 = you)
+| 3 - packet end   | uint8     | Username of the player
 
 ### Packet "9"
 
+Contains your own score
+
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-4   | uint8     | Your score as an integer
+| 5-6   | uint8     | (OPTIONAL) Your kills as integer
+
 ### Packet "10"
+
+Contains your own rank
+	
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-2   | uint8     | Your rank as an integer
 
 ### Packet "11"
 
+Contains every single leaderboard value
+
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-2   | uint8     | Total players in the server
+
+For every player:
+
+| Bytes                                 | Data type | Description
+|:--------------------------------------|-----------|--------------------------------
+| (index to index + 4)                  | uint8     | The player's score
+| (index + 5)                           | uint8     | The length of the player's name
+| (index + 6 to end of username length) | uint8     | The player's name
+
 ### Packet "12"
 
+Defines the width and height of the map
+
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-2   | uint8     | Size of the map in integer (Server default is 600)
+
 ### Packet "13"
+
+Sent when you died
+
+Header only sometimes, but also can contain information on death:
+
+| Bytes | Data type | Description
+|:------|-----------|------------
+| 1-4   | uint8     | The amount of blocks you owned upon death
+| 5-6   | uint8     | The amount of kills you had upon death
+| 7-8   | uint8     | Your rank you had upon death
+| 9-12  | uint8     | The amount of time you were alive (in seconds)
+| 13-16 | uint8     | (ONLY sent if you were number 1) The amount of time you were number 1 (in seconds)
+| 17    | uint8     | The death type of how you died
+| 18-end| uint8     | (ONLY if you died by a player) The name of the person who killed you
 
 ### Packet "14"
 
 ### Packet "15"
+Contains skin of a specific player
+	
+| Bytes | Data type | Description
+|:------|-----------|----------------------------------------------------------------------------------------
+| 1-2   | uint8     | Integer of the player ID (ID is 0 = you)
+| 3     | uint8     | Player color
+| 4     | uint8     | Player block pattern
 
 ### Packet "16"
 
 ### Packet "17"
+Sent when the server validates player spawn.
+Sent only packet header.
 
 ### Packet "18"
 
 ### Packet "19"
 
 ### Packet "20"
+Sent when a player within view honks
+
+| Bytes | Data type | Description
+|:------|-----------|-------------------------------------------------------------------
+|   1   | uint8     | Honk size (value 0-255, any bigger and the server will drop packet)
 
 ### Packet "21"
+Sent when a player pings the server.
+Sent only packet header.
 
 ## Client
 
