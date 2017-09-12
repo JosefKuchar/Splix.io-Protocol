@@ -84,8 +84,8 @@ Contains your own score
 
 | Bytes | Data type | Description
 |:------|-----------|------------
-| 1-4   | uint8     | Your score as an integer
-| 5-6   | uint8     | (OPTIONAL) Your kills as integer
+| 1-4   | uint32     | Your score as an integer
+| 5-6   | uint16     | (OPTIONAL) Your kills as integer
 
 ### Packet "10"
 
