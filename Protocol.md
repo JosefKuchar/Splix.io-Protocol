@@ -41,9 +41,9 @@ Contains the position of any player within view
 
 | Bytes | Data type | Description
 |:------|-----------|------------
-| 1-2   | uint8     | The X position of the player to update
-| 3-4   | uint8     | The Y position of the player to update
-| 5-6   | uint8     | The ID of the player to update (ID is 0 = you)
+| 1-2   | uint16     | The X position of the player to update
+| 3-4   | uint16     | The Y position of the player to update
+| 5-6   | uint16    | The ID of the player to update (ID is 0 = you)
 
 ### Packet "3"
 
@@ -67,7 +67,7 @@ Remove a player from view
 
 | Bytes | Data type | Description
 |:------|-----------|------------
-| 1-2   | uint8     | ID of player to remove (ID is 0 = you)
+| 1-2   | uint16     | ID of player to remove (ID is 0 = you)
 
 ### Packet "8"
 
@@ -75,7 +75,7 @@ Contains name of a specified player
 
 | Bytes            | Data type | Description
 |:-----------------|-----------|------------
-| 1-2              | uint8     | ID of player to set name (ID is 0 = you)
+| 1-2              | uint16    | ID of player to set name (ID is 0 = you)
 | 3 - packet end   | uint8     | Username of the player
 
 ### Packet "9"
@@ -84,8 +84,8 @@ Contains your own score
 
 | Bytes | Data type | Description
 |:------|-----------|------------
-| 1-4   | uint8     | Your score as an integer
-| 5-6   | uint8     | (OPTIONAL) Your kills as integer
+| 1-4   | uint32     | Your score as an integer
+| 5-6   | uint16     | (OPTIONAL) Your kills as integer
 
 ### Packet "10"
 
@@ -93,7 +93,7 @@ Contains your own rank
 
 | Bytes | Data type | Description
 |:------|-----------|------------
-| 1-2   | uint8     | Your rank as an integer
+| 1-2   | uint16     | Your rank as an integer
 
 ### Packet "11"
 
@@ -101,13 +101,13 @@ Contains every single leaderboard value
 
 | Bytes | Data type | Description
 |:------|-----------|------------
-| 1-2   | uint8     | Total players in the server
+| 1-2   | uint16     | Total players in the server
 
 For every player:
 
 | Bytes                                 | Data type | Description
 |:--------------------------------------|-----------|--------------------------------
-| (index to index + 4)                  | uint8     | The player's score
+| (index to index + 4)                  | uint32     | The player's score
 | (index + 5)                           | uint8     | The length of the player's name
 | (index + 6 to end of username length) | uint8     | The player's name
 
@@ -117,7 +117,7 @@ Defines the width and height of the map
 
 | Bytes | Data type | Description
 |:------|-----------|------------
-| 1-2   | uint8     | Size of the map in integer (Server default is 600)
+| 1-2   | uint16     | Size of the map in integer (Server default is 600)
 
 ### Packet "13"
 
@@ -127,11 +127,11 @@ Header only sometimes, but also can contain information on death:
 
 | Bytes | Data type | Description
 |:------|-----------|------------
-| 1-4   | uint8     | The amount of blocks you owned upon death
-| 5-6   | uint8     | The amount of kills you had upon death
-| 7-8   | uint8     | Your rank you had upon death
-| 9-12  | uint8     | The amount of time you were alive (in seconds)
-| 13-16 | uint8     | (ONLY sent if you were number 1) The amount of time you were number 1 (in seconds)
+| 1-4   | uint32     | The amount of blocks you owned upon death
+| 5-6   | uint16     | The amount of kills you had upon death
+| 7-8   | uint16     | Your rank you had upon death
+| 9-12  | uint32     | The amount of time you were alive (in seconds)
+| 13-16 | uint32     | (ONLY sent if you were number 1) The amount of time you were number 1 (in seconds)
 | 17    | uint8     | The death type of how you died
 | 18-end| uint8     | (ONLY if you died by a player) The name of the person who killed you
 
@@ -142,7 +142,7 @@ Contains skin of a specific player
 
 | Bytes | Data type | Description
 |:------|-----------|----------------------------------------------------------------------------------------
-| 1-2   | uint8     | Integer of the player ID (ID is 0 = you)
+| 1-2   | uint16     | Integer of the player ID (ID is 0 = you)
 | 3     | uint8     | Player color
 | 4     | uint8     | Player block pattern
 
@@ -189,8 +189,8 @@ Update direction
 | Bytes | Data type | Description
 |:------|-----------|------------
 | 1     | uint8     | Direction (0-3)
-| 2-3   | uint8     | X Coordinate
-| 4-5   | uint8     | Y Coordinate
+| 2-3   | uint16     | X Coordinate
+| 4-5   | uint16     | Y Coordinate
 
 ### Packet "2"
 
